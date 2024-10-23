@@ -24,21 +24,22 @@ Servico156="http://dados.prefeitura.sp.gov.br/dataset/dados-do-sp156"
 # URL9="http://dados.prefeitura.sp.gov.br/dataset/0aecfa2b-aa3a-40d4-8183-0d4351b7fd0a/resource/6e6b299c-1952-433c-be06-797a2bc14fda/download/arquivofinal1tri2022.csv"
 
 DOWNLOAD_CSV() {
+    echo "downloadeia calailo"
     exit 0
 }
 
-table () {
-    echo ${LINHA0}
-    echo ${LINHA1}
-    echo ${LINHA2}
-    echo ${LINHA3}
-    echo ${LINHA4}
-    echo ${LINHA5}
-    echo ${LINHA6}
-    echo ${LINHA0}
-    echo ""
-    echo "Por favor digite a seguir o número da operação que você deseja realizar: "
-}
+# table () {
+#     echo ${LINHA0}
+#     echo ${LINHA1}
+#     echo ${LINHA2}
+#     echo ${LINHA3}
+#     echo ${LINHA4}
+#     echo ${LINHA5}
+#     echo ${LINHA6}
+#     echo ${LINHA0}
+#     echo ""
+#     echo "Por favor digite a seguir o número da operação que você deseja realizar: "
+# }
 
 erro1 () {
     echo ""
@@ -47,6 +48,11 @@ erro1 () {
     echo "(ii) ./ep2_servico156 <path/file>"
     echo ""
     exit 1   
+}
+
+erro2(){
+    echo "ERRO: O arquivo $ARG não existe."
+    exit 1
 }
 
 #selecionar_arquivo
@@ -149,29 +155,24 @@ if [[ $# -eq 0 ]]; then #soh ./ep2_servico156
 }   
 elif [ $# -eq 1 ]; then #   ./ep2_servico156 <path/file>
 {
-    loop2=0
+    declare -i loop2=0
     ARG=$1
-    #Download 
-    while [ $loop2 -ep 0 ]; do
-        if [ $ARG =~ "/" ]; then
-            caminho=${ echo $ARG | cut -d'/' -f1 }
+    echo $loop2
+    while [ $loop2 -le 0 ]; do
+        if [ $ARG=~"/" ]; then
+            caminho=$[ $ARG | cut -d'/' -f1 ]
+            echo $caminho
             cd ./"$caminho" #Deus queira que isso funcione
         else
             loop2=1
         fi
     done
-    DOWNLOAD_CSV
-    
-    #procura o arquivo
-    # if [[ARG ]]; then
-    #     echo "esse arquivo não existe meu chapa..."
-    # else
-    #     #caso não encontre enviar erro2
-    #     echo "ERRO: O arquivo $ARG não existe."
-    #     exit 1
-    # fi
-    
-    # table
+    #verifica se há arquivo
+    if [ ! -f $ARG ]; then
+        erro2
+    else
+        DOWNLOAD_CSV    
+    fi
     TABLE
 }       
 else 
