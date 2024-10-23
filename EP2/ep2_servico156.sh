@@ -24,7 +24,7 @@ Servico156="http://dados.prefeitura.sp.gov.br/dataset/dados-do-sp156"
 # URL9="http://dados.prefeitura.sp.gov.br/dataset/0aecfa2b-aa3a-40d4-8183-0d4351b7fd0a/resource/6e6b299c-1952-433c-be06-797a2bc14fda/download/arquivofinal1tri2022.csv"
 
 DOWNLOAD_CSV() {
-    
+    exit 0
 }
 
 table () {
@@ -52,39 +52,39 @@ erro1 () {
 #selecionar_arquivo
 SELECAO_ARQUIVO () {
     #Verifica se o arquivo existe 
+    echo "seleciona ai boy"
 
-
-    exit 0
+    # exit 0
 }
 
 #adicionar_filtro_coluna
 ADICIONAR_FILTRO_COLUNA () {
-    
-    exit 0
+    echo "adiciona porra!"
+    # exit 0
 }
 
 #limpar_filtros_colunas
 LIMPAR_FILTROS_COLUNAS () {
-
-    exit 0
+    echo "limmpaaaaaaaaa filtro filha da puta"
+    # exit 0
 }
 
 #mostrar_duracao_media_reclamacao
 MOSTRAR_DURACAO_MEDIA_RECLAMACAO () {
-
-    exit 0
+    echo "Deus tenha misericórdia"
+    # exit 0
 }
   
 #mostrar_ranking_reclamacoes
 MOSTRAR_RANKING_RECLAMACOES () {
-
-    exit 0
+    echo "meu Jesus"
+    # exit 0
 }
 
 #mostrar_reclamacoes
 MOSTRAR_RECLAMACOES () {
-
-    exit 0
+    echo "ai calica"
+    # exit 0
 }
 
 LOOP=0
@@ -149,22 +149,30 @@ if [[ $# -eq 0 ]]; then #soh ./ep2_servico156
 }   
 elif [ $# -eq 1 ]; then #   ./ep2_servico156 <path/file>
 {
-    # Baixar os arquivos
+    loop2=0
     ARG=$1
-
+    #Download 
+    while [ $loop2 -ep 0 ]; do
+        if [ $ARG =~ "/" ]; then
+            caminho=${ echo $ARG | cut -d'/' -f1 }
+            cd ./"$caminho" #Deus queira que isso funcione
+        else
+            loop2=1
+        fi
+    done
+    DOWNLOAD_CSV
+    
     #procura o arquivo
-    if [[ARG ]]; then
-        echo "esse arquivo não existe meu chapa..."
-    else
-        #caso não encontre enviar erro2
-        echo "ERRO: O arquivo $ARG não existe."
-        exit 1
-    fi
+    # if [[ARG ]]; then
+    #     echo "esse arquivo não existe meu chapa..."
+    # else
+    #     #caso não encontre enviar erro2
+    #     echo "ERRO: O arquivo $ARG não existe."
+    #     exit 1
+    # fi
+    
     # table
-    # ler
-    # read ACAO
-    # executa
-    # seleciona_executa (ACAO)
+    TABLE
 }       
 else 
 {
